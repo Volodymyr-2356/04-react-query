@@ -3,7 +3,6 @@ import type { Movie } from "../types/movie";
 import axios from "axios";
 
 const TOKEN = import.meta.env.VITE_TMDB_TOKEN;
-console.log(TOKEN);
 
 interface FetchMoviesResponse {
   page: number;
@@ -14,14 +13,18 @@ interface FetchMoviesResponse {
 
 const url = "https://api.themoviedb.org/3/search/movie";
 
-export default async function fetchMovies(query: string): Promise<Movie[]> {
+export default async function fetchMovies(
+  query: string,
+  page: number
+): Promise<FetchMoviesResponse> {
   const response = await axios.get<FetchMoviesResponse>(url, {
     params: {
       query,
+      page,
     },
     headers: {
       Authorization: `Bearer ${TOKEN}`,
     },
   });
-  return response.data.results;
+  return response.data;
 }
