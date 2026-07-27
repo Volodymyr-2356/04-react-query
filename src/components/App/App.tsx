@@ -26,11 +26,6 @@ const ReactPaginate = (
 
 // Далі в jsx використувуємо компонент ReactPaginate звичайним чином.
 //Пагінація
-interface PaginationProps {
-  totalPages: number;
-  currentPage: number;
-  onPageChange: (nextPage: number) => void;
-}
 
 export default function App() {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
